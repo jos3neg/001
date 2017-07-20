@@ -1,0 +1,19 @@
+-- Se instalo ubuntu server 16.04.2 en virtualBox
+
+con 2 adaptadores de red, NAT y Adaptador Puente.
+
+en /ect/network/interfaces
+
+********************************
+* auto enp0S3 
+* iface enp0s3 inet dhcp
+*
+* auto enp0s8
+* iface enp0s8 inet static
+*
+* address 192.168.1.12
+* gateway 192.168.1.1
+* netmask 255.255.255.0
+* broadcast 192.168.1.255
+*********************************
+ 

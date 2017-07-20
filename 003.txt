@@ -1,0 +1,58 @@
+ Lo siguiente sera instalar rApache, en la version 16.04.2 de ubuntu
+ es un poco distinto que el la 14.04 pero igual se hara de para las 
+ dos versiones 
+
+ --------------------------------------------------------------------
+ -------------------- Version ubuntu 14.04 --------------------------
+
+ -- sudo apt-get install r-base-dev
+ -- sudo apt-get install apache2-mpm-prefork apache2-prefork-dev
+
+ -> Hasta el momento se tiene instalado el rBase en nuestro servidor,
+    pero devemos instalar rApaque, que es un modulo para apeche, que le
+    permite correr r desde el servidor.
+
+ -> Cabe aclarar que haste este punto se tiene apache y r instalados
+
+ -- sudo apt-get install git-core
+ -- git clone https://github.com/jeffreyhorner/rapache
+ -- cd rapache
+ -- ./configure
+ -- make
+ -- make install
+ 
+ -> Si todo ha salido bien ya se debe tener rapache instalado, ahora
+    procedemos a configurarlo
+
+ -- nano /etc/apache2/mods-available/r.conf
+   
+********************************************
+* <Location /R>
+*	SetHandler r-script
+*	RHandler sys.source
+* </Location>
+*
+* <Location /info>
+*	SetHandler r-info
+* </Location>
+*
+********************************************
+
+ -> ese es el archivo de configuracion, ahora creamos el archivo para
+    cargar el modulo.
+
+ -- nano /etc/apache2/mods-available/r.load
+
+********************************************
+* LoadModule R_module /usr/lib/apache2/modules/mod_R.so
+*
+********************************************
+
+ -- a2enmod r
+ -- service apache2 restart
+
+ -> Si no se han presentado errores en este momento tenenos el modulo
+    rApche funcionando correctamente, para verificar eso pordemos 
+    aceder desde el navegado de la maquina principal al la direccion
+    de la VM xxx.yyy.zzz.kkk/info y nos debe mostrar la informacion de
+    rApache.

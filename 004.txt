@@ -1,0 +1,67 @@
+ -> En el archivo anterior se instalo rApache en ubuntu 14.04
+    ahora seguimos con la instalacion en la 16.04.2
+
+********************************************************************
+******************* Version ubuntu 16.04.2 *************************
+
+ -- sudo apt-get install r-base-dev
+
+ -> A diferencia de la version 14.04 si intentamos instalar 
+    apache2-mpm-prefork y apache2-prefork-dev no saldra error esto se debe
+    a que prefork viene por defecto para la v 16.04
+
+ -- install apache2-dev
+ -- install apache2-3
+ -- install libapache2-mod-apreq2
+ -- install devscripts
+ -- install libapreq2-dev
+
+ -> con dpkg -L apache2-bin | grep mpm podemos ver que ya estan 
+    los modulos de mpm ahora hay que activar y desactivar algunos
+  
+ -- sudo a2dismod mpm_event
+ -- sudo a2dismod mpm_worker
+ -- sudo a2enmod mpm_prefork
+
+ -- sudo service apache2 restart
+
+ -> Luego continua como en la version 14.04 es decir ahora procedemos a 
+    instalar git
+
+ -- sudo apt-get install git-core
+ -- git clone https://github.com/jeffreyhorner/rapache
+ -- cd rapache
+ -- sudo ./configure --> Me funciono sin sudo
+ -- sudo make        --> Me funciono sin sudo
+ -- sudo make install  --> solo funciona con sudo
+
+ -> Ya esta instalado, ahora lo configuramos 
+
+ -- sudo nano /etc/apache2/mods-available/r.conf
+
+************************************************
+* <Location /R>
+*	SetHandler r-script
+*	RHandler sys.source
+* </Location>
+*
+* <Location /info>
+*	SetHandler r-info
+* </Location>
+************************************************
+
+
+ -> Luego el archivo para cargar el modulo
+
+ -- sudo nano /etc/apache2/mods-available/r.load
+
+************************************************
+* LoadModule R_module /usr/lib/apache2/modules/mod_R.so
+*
+************************************************
+
+ -- sudo a2enmod r
+ -- sudo service apache2 restart
+
+ -> Si todo a salido bien ya tenemos rApache instalado y configurado
+    en ubuntu 16.04.2, para verificarlo xxx.yyy.zzz.kkk/info en el navegador

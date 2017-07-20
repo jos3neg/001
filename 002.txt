@@ -1,0 +1,17 @@
+--Se procede a instalar apache
+ 
+ sudo apt-get update 
+ sudo apt-get intall apache2 --> current version 2.4.18-2ubuntu3.3
+ 
+ sudo service apache2 restart
+ ------------------------------
+ Se instalo correctamente y  se verifico accediendo desde el navegador
+ de la maquina principal a la direccion de la MV
+ ------------------------------
+ Al ejecutar el comando informo que se instalaran paquetes adicionales,
+ esto es algo que se debe tener muy en cuenta para llevar un control de
+ todos los paquetes que estan instalado.
+
+ Los paquetes adicionales son: Error, se perdio registro... 
+
+
