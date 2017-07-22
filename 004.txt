@@ -11,7 +11,7 @@
     a que prefork viene por defecto para la v 16.04
 
  -- install apache2-dev
- -- install apache2-3
+ -- install libapreq2-3
  -- install libapache2-mod-apreq2
  -- install devscripts
  -- install libapreq2-dev
